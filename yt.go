@@ -31,7 +31,7 @@ func crawl() {
         }
 
         buffer.WriteString("document.domain = 'naver.com';")
-        doc.Find(".topics-wrapper").Each(func(i int, s1 *goquery.Selection) {
+        doc.Find(".topics-wrapper").EachWithBreak(func(i int, s1 *goquery.Selection) bool {
                 buffer.WriteString("var obj =[")
                 s1.Find(".d-b, .pl-l, .ell").Each(func(j int, s2 *goquery.Selection) {
                         buffer.WriteString("{K: \"")
@@ -44,7 +44,7 @@ func crawl() {
                 buffer.WriteString("];")
                 result = buffer.String()
                 log.Printf("End crawling: %s elapsed\n", time.Since(start))
-                return
+                return false
         })
 }
 
