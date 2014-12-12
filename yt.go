@@ -37,12 +37,11 @@ func crawl() {
                         buffer.WriteString("{K: \"")
                         buffer.WriteString(s2.Text())
                         buffer.WriteString("\"}")
-                        if j == 9 {
-                                buffer.WriteString("];")
-                        } else {
+                        if j != 9 {
                                 buffer.WriteString(",")
                         }
                 })
+                buffer.WriteString("];")
                 result = buffer.String()
                 log.Printf("End crawling: %s elapsed\n", time.Since(start))
                 return
