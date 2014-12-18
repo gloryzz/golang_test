@@ -27,7 +27,8 @@ func crawl() {
 
         doc, err := goquery.NewDocument("https://www.yahoo.com")
         if err != nil {
-                log.Fatal(err)
+                log.Println(err)
+                return
         }
 
         buffer.WriteString("document.domain = 'naver.com';")
